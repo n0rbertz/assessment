@@ -3,7 +3,7 @@ function convertNumberToWords(number) {
         return "zero";
     }
     let numberStr = number.toString();
-    const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "thirteen",
+    const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
                   "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
     const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
     let numbers = [0, 0, 0];
@@ -12,13 +12,14 @@ function convertNumberToWords(number) {
         numbers[i + difference] = numberStr[i]; 
     }
     let word = "";
-    if (numbers[0] != 0) {
+    if (numbers[0] != 0) {        
         word = word + ones[numbers[0]] + " hundred";
+        if (numbers[1] == 0 && numbers[2] == 0) {
+            return word;
+        }
+        word += " and "
     }
     if (numbers[1] != 0) {
-        if (word != "") {
-            word += " "
-        }
         word += tens[numbers[1]];
     }
     if (numbers[2] != 0) {
@@ -26,9 +27,6 @@ function convertNumberToWords(number) {
             word = word + "-" + ones[numbers[2]]
         }
         else {
-            if (word != "") {
-                word += " ";
-            }
             word += ones[numbers[2]];
         }
     }

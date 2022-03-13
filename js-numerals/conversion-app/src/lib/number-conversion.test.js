@@ -31,3 +31,7 @@ test("converts 110 to one hundred and ten", () => {
 test("converts 20540605 to twenty million five hundred and forty thousand six hundred and five", () => {
     expect(convertNumberToWords(20540605)).toBe("twenty million five hundred and forty thousand six hundred and five");
 })
+
+test("converts 110105490365890 to one hundred and ten trillion one hundred and five billion four hundred and ninety million three hundred and sixty-five thousand eight hundred and ninety", () => {
+    expect(convertNumberToWords(110105490365890)).toBe("one hundred and ten trillion one hundred and five billion four hundred and ninety million three hundred and sixty-five thousand eight hundred and ninety");
+})

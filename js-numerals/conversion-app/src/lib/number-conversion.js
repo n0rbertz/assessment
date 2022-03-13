@@ -2,6 +2,30 @@ function convertNumberToWords(number) {
     if (number == 0) {
         return "zero";
     }
+    let word = "";
+    let numbersInHundreds = [];
+    let numberToDivide = number;
+    while (numberToDivide >= 1) {
+        numbersInHundreds.push(numberToDivide % 1000);
+        numberToDivide /= 1000;
+        numberToDivide = Math.floor(numberToDivide);
+    }
+    const largeNumbers = ["", " thousand", " million", " billion", " trillion"];
+    for (let i = numbersInHundreds.length - 1; i >= 0; i--) {
+        word += convertNumbersBelow1000ToWords(numbersInHundreds[i]) + largeNumbers[i];
+        if (i > 0) {
+            if (i == 1 && numbersInHundreds[0] < 100) {
+                word += " and ";
+            }
+            else {
+                word += " ";
+            }
+        }   
+    }
+    return word;
+}
+
+function convertNumbersBelow1000ToWords(number) {
     let numberStr = number.toString();
     const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
                   "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];

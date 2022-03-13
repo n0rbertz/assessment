@@ -27,3 +27,7 @@ test("converts 111 to one hundred and eleven", () => {
 test("converts 110 to one hundred and ten", () => {
     expect(convertNumberToWords(110)).toBe("one hundred and ten");
 })
+
+test("converts 20540605 to twenty million five hundred and forty thousand six hundred and five", () => {
+    expect(convertNumberToWords(20540605)).toBe("twenty million five hundred and forty thousand six hundred and five");
+})

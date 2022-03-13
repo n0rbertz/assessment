@@ -20,6 +20,10 @@ function convertNumberToWords(number) {
         word += " and "
     }
     if (numbers[1] != 0) {
+        if (numbers[1] == 1) {
+            word += ones[number - numbers[0] * 100];
+            return word;
+        }
         word += tens[numbers[1]];
     }
     if (numbers[2] != 0) {

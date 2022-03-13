@@ -20,4 +20,10 @@ test("converts 105 to one hundred and five", () => {
     expect(convertNumberToWords(105)).toBe("one hundred and five");
 })
 
+test("converts 111 to one hundred and eleven", () => {
+    expect(convertNumberToWords(111)).toBe("one hundred and eleven");
+})
 
+test("converts 110 to one hundred and ten", () => {
+    expect(convertNumberToWords(110)).toBe("one hundred and ten");
+})

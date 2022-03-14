@@ -1,20 +1,21 @@
-function convertNumberToWords(number) {
+function convertNumberToWords(number, conversionType) {
     if (number == 0) {
         return "zero";
     }
-    let word = "";
-    let numbersInHundreds = [];
-    let numberToDivide = number;
-    while (numberToDivide >= 1) {
-        numbersInHundreds.push(numberToDivide % 1000);
-        numberToDivide /= 1000;
-        numberToDivide = Math.floor(numberToDivide);
+    if (conversionType == "british" && number > 1000 && number < 2000) {
+        return convertNumberToBritishEnglishWord(number);
     }
+    let partsUnder1000 = splitNumberToPartsUnder1000(number);    
+    return createWordFromPartsUnder1000(partsUnder1000);
+}
+
+function createWordFromPartsUnder1000(partsUnder1000) {
     const largeNumbers = ["", " thousand", " million", " billion", " trillion"];
-    for (let i = numbersInHundreds.length - 1; i >= 0; i--) {
-        word += convertNumbersBelow1000ToWords(numbersInHundreds[i]) + largeNumbers[i];
+    let word = "";
+    for (let i = partsUnder1000.length - 1; i >= 0; i--) {
+        word += convertNumberUnder1000(partsUnder1000[i]) + largeNumbers[i];
         if (i > 0) {
-            if (i == 1 && numbersInHundreds[0] < 100) {
+            if (i == 1 && partsUnder1000[0] < 100) {
                 word += " and ";
             }
             else {
@@ -25,40 +26,55 @@ function convertNumberToWords(number) {
     return word;
 }
 
-function convertNumbersBelow1000ToWords(number) {
-    let numberStr = number.toString();
-    const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
-                  "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+function splitNumberToPartsUnder1000(number) {
+    let numbersUnder1000 = [];
+    let numberToDivide = number;
+    while (numberToDivide >= 1) {
+        numbersUnder1000.push(numberToDivide % 1000);
+        numberToDivide /= 1000;
+        numberToDivide = Math.floor(numberToDivide);
+    }
+    return numbersUnder1000;
+}
+
+function convertNumberToBritishEnglishWord(number) {
+    const hundreds = Math.floor(number / 100);
+    const tensAndOnes = number % 100;
+    if (tensAndOnes < 10) {
+        return convertNumberUnder20(hundreds) + " oh " + convertNumberUnder20(tensAndOnes);
+    }
+    return convertNumberUnder20(hundreds) + " hundred " + convertNumberUnder100(tensAndOnes)
+}
+
+function convertNumberUnder100(number) {
+    if (number < 20) {
+        return convertNumberUnder20(number);
+    }
+    if (number % 10 == 0) {
+        return convertTens(number/10);
+    }
+    return convertTens(Math.floor(number/10)) + "-" + convertNumberUnder20(number % 10);
+}
+
+function convertNumberUnder20(number) {
+    const numbersBelow20 = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+    "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+    return numbersBelow20[number];
+}
+
+function convertTens(number) {
     const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-    let numbers = [0, 0, 0];
-    let difference = 3 - numberStr.length;
-    for (let i = 0; i < numberStr.length; i++) {        
-        numbers[i + difference] = numberStr[i]; 
+    return tens[number];
+}
+
+function convertNumberUnder1000(number) {
+    if (number < 100) {
+        return convertNumberUnder100(number);
     }
-    let word = "";
-    if (numbers[0] != 0) {        
-        word = word + ones[numbers[0]] + " hundred";
-        if (numbers[1] == 0 && numbers[2] == 0) {
-            return word;
-        }
-        word += " and "
+    if (number % 100 == 0) {
+        return convertNumberUnder20(number/100) + " hundred";
     }
-    if (numbers[1] != 0) {
-        if (numbers[1] == 1) {
-            word += ones[number - numbers[0] * 100];
-            return word;
-        }
-        word += tens[numbers[1]];
-    }
-    if (numbers[2] != 0) {
-        if (numbers[1] != 0) {
-            word = word + "-" + ones[numbers[2]]
-        }
-        else {
-            word += ones[numbers[2]];
-        }
-    }
-    return word;
+    return convertNumberUnder20(Math.floor(number/100))  + " hundred and " + convertNumberUnder100(number % 100);
 }
 
 export default convertNumberToWords;

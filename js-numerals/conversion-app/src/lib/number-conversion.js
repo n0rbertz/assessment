@@ -10,7 +10,7 @@ function convertNumberToWords(number, conversionType) {
 }
 
 function createWordFromPartsUnder1000(partsUnder1000) {
-    const largeNumbers = ["", " thousand", " million", " billion", " trillion", " quadrillion", " quintillion"];
+    const largeNumbers = ["", " thousand", " million", " billion", " trillion"];
     let word = "";
     for (let i = partsUnder1000.length - 1; i >= 0; i--) {
         if (partsUnder1000[i] !== 0) {

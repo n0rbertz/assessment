@@ -7,7 +7,7 @@ import {useState} from 'react'
 
 function App() {
   const [conversionType, setConversionType] = useState("standard");
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState();
   return (
     <div className="container">
       <Header></Header>

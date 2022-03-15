@@ -1,6 +1,6 @@
 const InputField = ({onChange}) => {
     return (
-        <div>
+        <div className="form-control">
             <input type='text' onChange={onChange}></input>
         </div>
     )

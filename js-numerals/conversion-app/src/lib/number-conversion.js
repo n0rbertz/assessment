@@ -13,9 +13,14 @@ function createWordFromPartsUnder1000(partsUnder1000) {
     const largeNumbers = ["", " thousand", " million", " billion", " trillion"];
     let word = "";
     for (let i = partsUnder1000.length - 1; i >= 0; i--) {
-        word += convertNumberUnder1000(partsUnder1000[i]) + largeNumbers[i];
+        if (partsUnder1000[i] != 0) {
+            word += convertNumberUnder1000(partsUnder1000[i]) + largeNumbers[i];
+        }
         if (i > 0) {
-            if (i == 1 && partsUnder1000[0] < 100) {
+            if (i == 1 && partsUnder1000[0] == 0) {
+                return word;
+            }
+            else if (i == 1 && partsUnder1000[0] < 100) {
                 word += " and ";
             }
             else {
@@ -40,10 +45,13 @@ function splitNumberToPartsUnder1000(number) {
 function convertNumberToBritishEnglishWord(number) {
     const hundreds = Math.floor(number / 100);
     const tensAndOnes = number % 100;
+    if (tensAndOnes == 0) {
+        return convertNumberUnder20(hundreds) + " hundred";
+    }
     if (tensAndOnes < 10) {
         return convertNumberUnder20(hundreds) + " oh " + convertNumberUnder20(tensAndOnes);
     }
-    return convertNumberUnder20(hundreds) + " hundred " + convertNumberUnder100(tensAndOnes)
+    return convertNumberUnder20(hundreds) + " hundred and " + convertNumberUnder100(tensAndOnes)
 }
 
 function convertNumberUnder100(number) {

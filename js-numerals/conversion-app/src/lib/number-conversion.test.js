@@ -40,12 +40,12 @@ test("converts 1405 in british to fourteen oh five", () => {
     expect(convertNumberToWords(1405, "british")).toBe("fourteen oh five");
 })
 
-test("converts 1238 in british to twelve hundred thirty-eight", () => {
-    expect(convertNumberToWords(1238, "british")).toBe("twelve hundred thirty-eight");
+test("converts 1238 in british to twelve hundred and thirty-eight", () => {
+    expect(convertNumberToWords(1238, "british")).toBe("twelve hundred and thirty-eight");
 })
 
-test("converts 1760 in british to seventeen hundred sixty", () => {
-    expect(convertNumberToWords(1760, "british")).toBe("seventeen hundred sixty");
+test("converts 1760 in british to seventeen hundred and sixty", () => {
+    expect(convertNumberToWords(1760, "british")).toBe("seventeen hundred and sixty");
 })
 
 test("converts 7 to seven", () => {

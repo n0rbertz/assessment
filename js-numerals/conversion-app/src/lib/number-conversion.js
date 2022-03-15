@@ -1,8 +1,8 @@
 function convertNumberToWords(number, conversionType) {
-    if (number == 0) {
+    if (number === 0) {
         return "zero";
     }
-    if (conversionType == "british" && number > 1000 && number < 2000) {
+    if (conversionType === "british" && number > 1000 && number < 2000) {
         return convertNumberToBritishEnglishWord(number);
     }
     let partsUnder1000 = splitNumberToPartsUnder1000(number);    
@@ -10,17 +10,17 @@ function convertNumberToWords(number, conversionType) {
 }
 
 function createWordFromPartsUnder1000(partsUnder1000) {
-    const largeNumbers = ["", " thousand", " million", " billion", " trillion"];
+    const largeNumbers = ["", " thousand", " million", " billion", " trillion", " quadrillion", " quintillion"];
     let word = "";
     for (let i = partsUnder1000.length - 1; i >= 0; i--) {
-        if (partsUnder1000[i] != 0) {
+        if (partsUnder1000[i] !== 0) {
             word += convertNumberUnder1000(partsUnder1000[i]) + largeNumbers[i];
         }
         if (i > 0) {
-            if (i == 1 && partsUnder1000[0] == 0) {
+            if (i === 1 && partsUnder1000[0] === 0) {
                 return word;
             }
-            else if (i == 1 && partsUnder1000[0] < 100) {
+            else if (i === 1 && partsUnder1000[0] < 100) {
                 word += " and ";
             }
             else {
@@ -45,7 +45,7 @@ function splitNumberToPartsUnder1000(number) {
 function convertNumberToBritishEnglishWord(number) {
     const hundreds = Math.floor(number / 100);
     const tensAndOnes = number % 100;
-    if (tensAndOnes == 0) {
+    if (tensAndOnes === 0) {
         return convertNumberUnder20(hundreds) + " hundred";
     }
     if (tensAndOnes < 10) {
@@ -58,7 +58,7 @@ function convertNumberUnder100(number) {
     if (number < 20) {
         return convertNumberUnder20(number);
     }
-    if (number % 10 == 0) {
+    if (number % 10 === 0) {
         return convertTens(number/10);
     }
     return convertTens(Math.floor(number/10)) + "-" + convertNumberUnder20(number % 10);
@@ -79,7 +79,7 @@ function convertNumberUnder1000(number) {
     if (number < 100) {
         return convertNumberUnder100(number);
     }
-    if (number % 100 == 0) {
+    if (number % 100 === 0) {
         return convertNumberUnder20(number/100) + " hundred";
     }
     return convertNumberUnder20(Math.floor(number/100))  + " hundred and " + convertNumberUnder100(number % 100);

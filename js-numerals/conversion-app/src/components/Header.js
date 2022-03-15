@@ -11,7 +11,7 @@ const Header = ({title}) => {
 }
 
 Header.defaultProps = {
-    title : "Conversion tool"
+    title : "Arabic number conversion tool"
 }
 
 export default Header;

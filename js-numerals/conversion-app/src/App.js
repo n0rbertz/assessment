@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="container">
       <Header></Header>
-      <Button title={"Standard"} color={conversionType === "standard" ? "red" : "white"} onClick={() => setConversionType("standard")}></Button>
-      <Button title={"British"} color={conversionType === "british" ? "red" : "white"} onClick={() => setConversionType("british")}></Button>
+      <Button title={"Standard"} color={conversionType === "standard" ? "lightblue" : "white"} onClick={() => setConversionType("standard")}></Button>
+      <Button title={"British"} color={conversionType === "british" ? "lightblue" : "white"} onClick={() => setConversionType("british")}></Button>
       <InputField onChange={(event) => setResult(convertNumberToWords(event.target.value, conversionType))}></InputField>
       <h2>{result}</h2>
     </div>

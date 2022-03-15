@@ -12,9 +12,10 @@ body {
   max-width: 500px;
   padding: 30px;
   overflow: auto;
-  border-radius: 5px;
+  border-radius: 50px;
   margin: 30px auto;
-  border: 1px solid steelblue;
+  border: 10px solid darkgreen;
+  background-color: #E5FFCC;
 }
 
 .btn {

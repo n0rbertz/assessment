@@ -1,4 +1,8 @@
 function convertNumberToWords(number, conversionType) {
+    const pattern = /[0-9]+/;
+    if (pattern.test(number) === false) {
+        return "";
+    }
     if (number === 0) {
         return "zero";
     }

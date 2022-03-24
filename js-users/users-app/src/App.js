@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       <Header title={"Users"}></Header>
-      <Users users={users}></Users>
+      <Users></Users>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import User from './User'
 import {useState, useEffect} from 'react'
+import Pagination from './Pagination'
 
 const Users = () => {
 
@@ -24,6 +25,7 @@ const Users = () => {
         {users.map((user) => 
             <User firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at}></User>
         )}
+        <Pagination usersPerPage={10} usersCount={users.length}></Pagination>
         </>
     )
 }

@@ -1,8 +1,8 @@
-const User = ({user}) => {
+const User = ({firstName, lastName, createdAt}) => {
     return (
         <div>
-            <h3>{user.first_name} {user.last_name}</h3>
-            <p>{user.created_at}</p>
+            <h3>{firstName} {lastName}</h3>
+            <p>{createdAt}</p>
         </div>
     )
 }

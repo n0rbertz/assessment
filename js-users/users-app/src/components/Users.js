@@ -14,22 +14,39 @@ const Users = () => {
         return data
     }
 
+    const getUsers = async () => {
+        const users = await fetchUsers()
+        setUsers(users)
+    }
+
+    async function updateUserStatus(id, newStatus)  {
+        const requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify({
+                status:newStatus
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`, requestOptions)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error))
+        getUsers()
+    }
+
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
 
-    useEffect(() => {
-        const getUsers = async () => {
-            const users = await fetchUsers()
-            setUsers(users)
-        }        
+    useEffect(() => {        
         getUsers()
     }, [])
 
     return (
         <>
         {users.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage).map((user) => 
-            <User firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} key={user.id}></User>
+            <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} key={user.id} updateMethod={updateUserStatus}></User>
         )}
         <Pagination usersPerPage={10} usersCount={users.length} paginate={paginate}></Pagination>
         </>

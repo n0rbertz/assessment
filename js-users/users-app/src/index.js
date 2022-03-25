@@ -15,7 +15,7 @@ ReactDOM.render(
       <Route path="new" element={<AddUser />} />
       <Route path="edit" element={<EditUser />} />
     </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

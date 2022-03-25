@@ -13,7 +13,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="new" element={<AddUser />} />
-      <Route path="edit" element={<EditUser />} />
+      <Route path="edit/:id" element={<EditUser />} />
     </Routes>
   </BrowserRouter>
   </React.StrictMode>,

@@ -45,8 +45,10 @@ const Users = () => {
 
     return (
         <>
-        {users.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage).map((user) => 
-            <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} key={user.id} updateMethod={updateUserStatus}></User>
+        {users.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage).map((user) =>
+            <div> 
+                <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} key={user.id} updateMethod={updateUserStatus}></User>
+            </div>
         )}
         <Pagination usersPerPage={10} usersCount={users.length} paginate={paginate}></Pagination>
         </>

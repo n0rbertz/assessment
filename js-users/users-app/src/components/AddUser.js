@@ -8,12 +8,10 @@ const AddUser = () => {
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value)
-    console.log(firstName)
   }
 
   const handleLastNameChange = (event) => {
     setLastName(event.target.value)
-    console.log(lastName)
   }
 
   const addNewUser = async (event) => {

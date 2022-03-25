@@ -2,11 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import AddUser from './components/AddUser'
+import EditUser from './components/EditUser'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+      <Route path="new" element={<AddUser />} />
+      <Route path="edit" element={<EditUser />} />
+    </Routes>
+  </BrowserRouter>,
   </React.StrictMode>,
   document.getElementById('root')
 );

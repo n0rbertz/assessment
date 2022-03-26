@@ -21,6 +21,19 @@ const EditUser = () => {
 
   const editUser = async (event) => {
     event.preventDefault();
+    const requestOptions = {
+      method: 'PUT',
+      body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName
+      }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  }
+  await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`, requestOptions)
+  .then((response) => console.log(response))
+  .catch((error) => console.log(error))
   }
 
   return (
@@ -34,7 +47,7 @@ const EditUser = () => {
           <input type={"text"} onChange={handleLastNameChange}/>
         </label>
         <br></br>
-        <button type="submit">Add User</button>
+        <button type="submit" onClick={editUser}>Edit User</button>
       </form>
     </div>
   )

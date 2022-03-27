@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import AddUser from './components/AddUser'
 import EditUser from './components/EditUser'
+import Users from './components/Users'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
 
@@ -12,6 +13,7 @@ ReactDOM.render(
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/users" element={<Users />} />
       <Route path="new" element={<AddUser />} />
       <Route path="edit/:id" element={<EditUser />} />
     </Routes>

@@ -1,6 +1,7 @@
 import User from './User'
 import {useState, useEffect} from 'react'
 import Pagination from './Pagination'
+import Header from './Header'
 
 const Users = () => {
 
@@ -9,14 +10,10 @@ const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const fetchUsers = async () => {
-        const res = await fetch("https://assessment-users-backend.herokuapp.com/users")
-        const data = await res.json()
-        return data
-    }
-
-    const getUsers = async () => {
-        const users = await fetchUsers()
-        setUsers(users)
+        await fetch("https://assessment-users-backend.herokuapp.com/users")
+        .then((response) => response.json())
+        .then((data) => setUsers(data))
+        .catch((error) => console.log(error))
     }
 
     async function updateUserStatus(id, newStatus)  {
@@ -32,7 +29,7 @@ const Users = () => {
         await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`, requestOptions)
         .then((response) => console.log(response))
         .catch((error) => console.log(error))
-        getUsers()
+        fetchUsers()
     }
 
     const paginate = (pageNumber) => {
@@ -40,11 +37,12 @@ const Users = () => {
     }
 
     useEffect(() => {        
-        getUsers()
+        fetchUsers()
     }, [])
 
     return (
         <>
+        <Header></Header>
         {users.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage).map((user) =>
             <div key={user.id}> 
                 <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} updateMethod={updateUserStatus}></User>

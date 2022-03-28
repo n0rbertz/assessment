@@ -44,16 +44,12 @@ const EditUser = () => {
   }
 
   const handleErrorMessages = (message) => {
-    for (let [key, value] of Object.entries(message)) {
-      const fieldOfError = key
-      const errorMessage= value
-      if (fieldOfError === "first_name") {
-        setFirstNameErrorMessage(`First name ${errorMessage}`)
+      if (message.hasOwnProperty("first_name")) {
+        setFirstNameErrorMessage(`First name ${message["first_name"]}`)
       }
-      if (fieldOfError === "last_name") {
-        setLastNameErrorMessage(`Last name ${errorMessage}`)
+      if (message.hasOwnProperty("last_name")) {
+        setLastNameErrorMessage(`Last name ${message["last_name"]}`)
       }
-    }
   }
 
   return (

@@ -2,6 +2,7 @@ import User from './User'
 import {useState, useEffect} from 'react'
 import Pagination from './Pagination'
 import Header from './Header'
+import getUsersOfCurrentPage from '../lib/util'
 
 const Users = () => {
 
@@ -43,7 +44,7 @@ const Users = () => {
     return (
         <>
         <Header></Header>
-        {users.slice(currentPage * postsPerPage - postsPerPage, currentPage * postsPerPage).map((user) =>
+        {getUsersOfCurrentPage(users, currentPage, postsPerPage).map((user) =>
             <div key={user.id}> 
                 <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} updateMethod={updateUserStatus} />
             </div>

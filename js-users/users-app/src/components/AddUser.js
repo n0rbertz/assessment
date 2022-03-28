@@ -1,10 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 const AddUser = () => {
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const navigate = useNavigate()
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value)
@@ -28,7 +30,7 @@ const AddUser = () => {
       }
     }
     await fetch('https://assessment-users-backend.herokuapp.com/users', requestOptions)
-    .then(response => response.json())
+    .then(response => response.ok ? navigate('/') : response.json())
     .then(response => console.log(response))
     .catch(error => console.log(error))
   }

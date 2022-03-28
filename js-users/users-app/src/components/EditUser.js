@@ -1,11 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 
 
 const EditUser = () => {
 
   const {id} = useParams()
+  const navigate = useNavigate()
   const [firstNameErrorMessage, setFirstNameErrorMessage] = useState("")
   const [lastNameErrorMessage, setLastNameErrorMessage] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -38,6 +39,9 @@ const EditUser = () => {
     .then((error) => {
       if (error) {
         handleErrorMessages(error)
+      }
+      else {
+        navigate('/')
       }
     })
     .catch((error) => console.log(error))

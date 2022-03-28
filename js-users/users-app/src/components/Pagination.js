@@ -8,9 +8,9 @@ const Pagination = ({usersPerPage, usersCount, paginate}) => {
     }
 
     return (
-      <div>
+      <div className="pagination">
           {pageNumbers.map((pageNumber) => 
-              <span style={{padding: "10px"}} onClick={() => paginate(pageNumber)} key={pageNumber}>{pageNumber}</span>
+              <button className="btn" onClick={() => paginate(pageNumber)} key={pageNumber}>{pageNumber}</button>
           )}
       </div>
     )

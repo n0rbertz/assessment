@@ -53,19 +53,19 @@ const EditUser = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <form>
         <label>First name:
           <input type={"text"} onChange={handleFirstNameChange}/>
         </label>
-        {firstNameErrorMessage}
+        <p style={{ color: "red" }}>{firstNameErrorMessage}</p>
         <br></br>
         <label>Last name:
           <input type={"text"} onChange={handleLastNameChange}/>
         </label>
-        {lastNameErrorMessage}
+        <p style={{color: "red"}}>{lastNameErrorMessage}</p>
         <br></br>
-        <button type="submit" onClick={editUser}>Edit User</button>
+        <button type="submit" className="btn"onClick={editUser}>Edit User</button>
       </form>
     </div>
   )

@@ -34,7 +34,7 @@ const AddUser = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <form>
         <label>First name:
           <input type={"text"} onChange={handleFirstNameChange}/>
@@ -44,7 +44,7 @@ const AddUser = () => {
           <input type={"text"} onChange={handleLastNameChange}/>
         </label>
         <br></br>
-        <button type="submit" onClick={addNewUser}>Add User</button>
+        <button className="btn" type="submit" onClick={addNewUser}>Add User</button>
       </form>
     </div>
   )

@@ -34,8 +34,12 @@ const EditUser = () => {
       }
     }
     await fetch(`https://assessment-users-backend.herokuapp.com/users/${id}`, requestOptions)
-    .then((response) => response.text())
-    .then((data) => data === "" ? {} : handleErrorMessages(JSON.parse(data)))
+    .then((response) => response.ok ? null : response.json())
+    .then((error) => {
+      if (error) {
+        handleErrorMessages(error)
+      }
+    })
     .catch((error) => console.log(error))
   }
 
@@ -43,10 +47,10 @@ const EditUser = () => {
     for (let [key, value] of Object.entries(message)) {
       const fieldOfError = key
       const errorMessage= value
-      if (fieldOfError == "first_name") {
+      if (fieldOfError === "first_name") {
         setFirstNameErrorMessage(`First name ${errorMessage}`)
       }
-      if (fieldOfError == "last_name") {
+      if (fieldOfError === "last_name") {
         setLastNameErrorMessage(`Last name ${errorMessage}`)
       }
     }

@@ -1,11 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 
 
 const EditUser = () => {
 
   const {id} = useParams()
+  const navigate = useNavigate()
   const [firstNameErrorMessage, setFirstNameErrorMessage] = useState("")
   const [lastNameErrorMessage, setLastNameErrorMessage] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -39,37 +40,36 @@ const EditUser = () => {
       if (error) {
         handleErrorMessages(error)
       }
+      else {
+        navigate('/')
+      }
     })
     .catch((error) => console.log(error))
   }
 
   const handleErrorMessages = (message) => {
-    for (let [key, value] of Object.entries(message)) {
-      const fieldOfError = key
-      const errorMessage= value
-      if (fieldOfError === "first_name") {
-        setFirstNameErrorMessage(`First name ${errorMessage}`)
+      if (message.hasOwnProperty("first_name")) {
+        setFirstNameErrorMessage(`First name ${message["first_name"]}`)
       }
-      if (fieldOfError === "last_name") {
-        setLastNameErrorMessage(`Last name ${errorMessage}`)
+      if (message.hasOwnProperty("last_name")) {
+        setLastNameErrorMessage(`Last name ${message["last_name"]}`)
       }
-    }
   }
 
   return (
-    <div>
+    <div className="container">
       <form>
         <label>First name:
           <input type={"text"} onChange={handleFirstNameChange}/>
         </label>
-        {firstNameErrorMessage}
+        <p style={{ color: "red" }}>{firstNameErrorMessage}</p>
         <br></br>
         <label>Last name:
           <input type={"text"} onChange={handleLastNameChange}/>
         </label>
-        {lastNameErrorMessage}
+        <p style={{color: "red"}}>{lastNameErrorMessage}</p>
         <br></br>
-        <button type="submit" onClick={editUser}>Edit User</button>
+        <button type="submit" className="btn"onClick={editUser}>Edit User</button>
       </form>
     </div>
   )

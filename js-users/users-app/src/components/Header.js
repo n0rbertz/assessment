@@ -7,7 +7,7 @@ const Header = ({title}) => {
         <div className="header">
             <div className="inner-header">
                 <div className="title">
-                    <h1>{title}</h1>
+                    <h1><Link to={'/'} style={{textDecoration: "none", color: "white"}}>{title}</Link></h1>
                 </div>
 
                 <ul className="navigation">

@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header'
 import {useState} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 
@@ -58,6 +59,8 @@ const EditUser = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div className="container">
       <form>
         <label>First name:
@@ -73,6 +76,7 @@ const EditUser = () => {
         <button type="submit" className="btn"onClick={editUser}>Edit User</button>
       </form>
     </div>
+    </>
   )
 }
 

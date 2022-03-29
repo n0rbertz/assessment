@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
@@ -57,6 +58,8 @@ const AddUser = () => {
 }
 
   return (
+    <>
+    <Header/>
     <div className="container">
       <form>
         <label>First name:
@@ -72,6 +75,7 @@ const AddUser = () => {
         <button className="btn" type="submit" onClick={addNewUser}>Add User</button>
       </form>
     </div>
+    </>
   )
 }
  export default AddUser

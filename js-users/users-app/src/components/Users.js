@@ -6,7 +6,7 @@ import getUsersOfCurrentPage from '../lib/util'
 
 const Users = () => {
 
-    const postsPerPage = 10;
+    const usersPerPage = 10;
     const [users, setUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,13 +43,13 @@ const Users = () => {
 
     return (
         <>
-        <Header></Header>
-        {getUsersOfCurrentPage(users, currentPage, postsPerPage).map((user) =>
+        <Header/>
+        {getUsersOfCurrentPage(users, currentPage, usersPerPage).map((user) =>
             <div key={user.id}> 
                 <User id={user.id} firstName={user.first_name} lastName={user.last_name} createdAt={user.created_at} status={user.status} updateMethod={updateUserStatus} />
             </div>
         )}
-        <Pagination usersPerPage={10} usersCount={users.length} paginate={paginate}></Pagination>
+        <Pagination usersPerPage={usersPerPage} usersCount={users.length} paginate={paginate}></Pagination>
         </>
     )
 }

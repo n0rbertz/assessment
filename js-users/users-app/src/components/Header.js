@@ -10,7 +10,7 @@ const Header = ({title}) => {
                     <h1>{title}</h1>
                 </div>
 
-                <ul class="navigation">
+                <ul className="navigation">
                     <Link to={`/new`}><button className="btn">Add new user</button></Link>
                     <Link to={`/users`}><button className="btn">See all users</button></Link>
                 </ul>

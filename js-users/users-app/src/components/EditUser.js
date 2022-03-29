@@ -43,7 +43,7 @@ const EditUser = () => {
       }
       else {
         alert('Succesfully edited!')
-        navigate('/')
+        navigate('/users')
       }
     })
     .catch((error) => console.log(error))

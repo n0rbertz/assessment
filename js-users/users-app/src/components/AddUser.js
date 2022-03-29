@@ -42,7 +42,7 @@ const AddUser = () => {
       }
       else {
         alert("Succesfully added!")
-        navigate('/')
+        navigate('/users')
       }
     })
     .catch((error) => console.log(error))

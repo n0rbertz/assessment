@@ -41,6 +41,7 @@ const EditUser = () => {
         handleErrorMessages(error)
       }
       else {
+        alert('Succesfully edited!')
         navigate('/')
       }
     })
